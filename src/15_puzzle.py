@@ -123,6 +123,7 @@ def solve(sol_,que_,node_,visited):
                 visited.append(moved)
         next_node=que_.pop(0) #Mengambil node dengan cost terkecil
     sol_.append(next_node) 
+    que_.clear() #Menghapus semua antrian simpul hidup
 
 def display_path(node_):
     if node_.parents_node != None:
@@ -189,7 +190,6 @@ if __name__ == '__main__':
         print("\nLangkah Penyelesaian\n")
         display_path(sol[0])
         print("Jumlah simpul yang dibangkitkan = "+str(node_generated)+"\n")
-        urutan.clear()
         print("Total waktu eksekusi penyelesaian : " + str(selesai))
         
 
