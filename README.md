@@ -27,8 +27,9 @@ Library Yang dipakai
 5. Pilihan file test dapat dilihat di folder test
 
 ## Contoh Ouput
-![image]<img src="https://user-images.githubusercontent.com/68802636/161419711-4d2b912f-8a25-4d4f-84fd-e853102b04e5.png" width = "400" height="400"<br />
-![image]<img src="https://user-images.githubusercontent.com/68802636/161419716-6fcc9df7-79ab-4845-a615-0e056f9fcf44.png" width = "400" height="400"
+![image](https://user-images.githubusercontent.com/68802636/161419866-f982c853-b19d-4e17-968a-ac63ebbacce0.png)
+![image](https://user-images.githubusercontent.com/68802636/161419878-18dd745d-f8b8-4838-8c30-16522ed9942d.png)
+
 
 
 ## Author
