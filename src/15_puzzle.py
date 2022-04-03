@@ -100,47 +100,38 @@ def move(que_,moved,node_):
     moved_node = node(moved,node_,node_.depth+1,x,y,count_cost(moved)+node_.depth+1) #Membentuk object simpul
     ins_to_que(que_,moved_node)
 
-#Untuk cek apakah sebuah bentuk sudah pernah tercapai atau belum
-def visited_or_not(visited,moved):
-    i=0
-    ada=False
-    while(i<len(visited) and ada==False):
-        if np.array_equal(visited[i],moved):
-            ada=True
-        i+=1
-    return ada
-
 #Pergerakan dari setiap node
-def solve(sol_,que_,node_,visited):
+def solve(que_,node_,visited):
     next_node=node_
     global node_generated #Untuk menghitung jumlah simpul yang dibangkitkan
+    global sol
     while not(np.array_equal(goal_state,next_node.state)): #Hingga menemukan hasil akhir
         if next_node.x != 0:
             moved = move_up(deepcopy(next_node.state),next_node.x,next_node.y)
-            if not(visited_or_not(visited,moved)): #Jika susunan puzzle belum pernah dijumpai maka, dimasukkan ke dalam simpul hidup
+            if tuple(np.reshape(moved,16)) not in visited: #Jika susunan puzzle belum pernah dijumpai maka, dimasukkan ke dalam simpul hidup
                 move(que_,moved,next_node)
                 node_generated+=1 #Jumlah simpul yang dibangkitkan
-                visited.append(moved) #Me-list semua susunan puzzle yang pernah dijumpai
+                visited.add(tuple(np.reshape(moved,16))) #Me-list semua susunan puzzle yang pernah dijumpai
         if next_node.y != 3:
             moved = move_right(deepcopy(next_node.state),next_node.x,next_node.y)
-            if not(visited_or_not(visited,moved)):
+            if tuple(np.reshape(moved,16)) not in visited:
                 move(que_,moved,next_node)
                 node_generated+=1
-                visited.append(moved)
+                visited.add(tuple(np.reshape(moved,16)))
         if next_node.x != 3:
             moved = move_down(deepcopy(next_node.state),next_node.x,next_node.y)
-            if not(visited_or_not(visited,moved)): 
+            if tuple(np.reshape(moved,16)) not in visited:
                 move(que_,moved,next_node)
                 node_generated+=1
-                visited.append(moved)
+                visited.add(tuple(np.reshape(moved,16)))
         if next_node.y !=0:
             moved = move_left(deepcopy(next_node.state),next_node.x,next_node.y)
-            if not(visited_or_not(visited,moved)):
+            if tuple(np.reshape(moved,16)) not in visited:
                 move(que_,moved,next_node)
                 node_generated+=1
-                visited.append(moved)
+                visited.add(tuple(np.reshape(moved,16)))
         next_node=que_.pop(0) #Mengambil node dengan cost terkecil
-    sol_.append(next_node) #Menambahkan solusi
+    sol=next_node #Menambahkan solusi
     que_.clear() #Menghapus semua antrian simpul hidup
 
 #Menampilkan urutan penyelesaian
@@ -194,8 +185,8 @@ if __name__ == '__main__':
 
         #initiate root ---------------------------
         urutan=[] #List simpul hidup
-        sol=[] #Jawaban
-        visited=[] #List simpul yang pernah dikunjungi
+        sol=None #Jawaban
+        visited=set() #List simpul yang pernah dikunjungi
         x_start,y_start=get_blank_location(back_to_2d)
         start_node = node(back_to_2d,None,0,x_start,y_start,99)
         urutan.append(start_node) #Menambahkan simpul dengan matrix bentuk awal kedalam simpul hidup
@@ -203,12 +194,12 @@ if __name__ == '__main__':
 
         #Runtime-----------------------
         start_time = time.time()
-        solve(sol,urutan,start_node,visited)
+        solve(urutan,start_node,visited)
         selesai=time.time()-start_time
         #Runtime-----------------------
 
         print("\nLangkah Penyelesaian\n")
-        display_path(sol[0])
+        display_path(sol)
         print("Jumlah simpul yang dibangkitkan = "+str(node_generated)+"\n")
         print("Total waktu eksekusi penyelesaian : " + str(selesai))
         
