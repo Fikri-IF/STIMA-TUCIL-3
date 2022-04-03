@@ -26,6 +26,11 @@ Library Yang dipakai
 4. Input file test yang akan digunakan
 5. Pilihan file test dapat dilihat di folder test
 
+## Contoh Ouput
+![image](https://user-images.githubusercontent.com/68802636/161419711-4d2b912f-8a25-4d4f-84fd-e853102b04e5.png) <br />
+![image](https://user-images.githubusercontent.com/68802636/161419716-6fcc9df7-79ab-4845-a615-0e056f9fcf44.png)
+
+
 ## Author
 Fikri Ihsan Fadhiilah <br />
 13520148 <br />
